@@ -71,27 +71,7 @@
 
 <script>
 $('#repostart').click(function () {
-	$('#repoform').submit(function( event ) {
-		  alert( "Handler for .submit() called." );
-		  event.preventDefault();
-	});
-});
-
-	/* var a=$('#repoform').serialize();
-	$.ajax({
-	    type:'POST',
-	    url:'../process',
-	    data:a,
-	    beforeSend:function(){
-	        
-	    },
-	    complete:function(){
-	        
-	    },
-	    success:function(result){
-	         
-	    }
-	}); */
+	$('#repoform').submit();
 });
 </script>
 </body>
