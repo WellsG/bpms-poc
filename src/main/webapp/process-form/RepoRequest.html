@@ -1,0 +1,98 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="../patternfly/dist/css/patternfly.min.css">
+<!-- jQuery -->
+<script src="../3rdlib/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="../3rdlib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Datatables, jQuery Grid Component -->
+<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+<script src="../3rdlib/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- PatternFly Custom Componets -  Sidebar, Popovers and Datatables Customizations -->
+<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+<script src="../patternfly/dist/js/patternfly.min.js"></script>
+
+<!-- Bootstrap Combobox -->
+<script src="../3rdlib/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<!-- Bootstrap Date Picker -->
+<script src="../3rdlib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap Date Time Picker - requires Moment -->
+<script src="../3rdlib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- Bootstrap Select -->
+<script src="../3rdlib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../3rdlib/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+<!-- Google Code Prettify - Syntax highlighting of code snippets -->
+<script src="../3rdlib/google-code-prettify/bin/prettify.min.js"></script>
+<!-- MatchHeight - Used to make sure dashboard cards are the same height -->
+<script src="../3rdlib/matchHeight/jquery.matchHeight-min.js"></script>
+<!-- Moment - required by Bootstrap Date Time Picker -->
+<script src="../3rdlib/moment/min/moment.min.js"></script>
+</head>
+<body>
+
+<h4>Repo Request Process</h4>
+<form id="repoform" class="form-horizontal" method="POST" action="../process">
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="repoName">Repo Name:</label>
+    <div class="col-sm-4">
+      <input type="text" id="repoName" name="repoName" class="form-control">
+    </div>
+  </div>
+   <div class="form-group">
+  <label class="col-sm-1 control-label" for="ldapGroup">Group:</label>
+  <div class="col-sm-4">
+  <select id="ldapGroup" name="ldapGroup" class="combobox form-control">
+    <option value="true" selected="selected">LDAP Group</option>
+    <option value="false">Gerrit Group</option>
+  </select>
+</div>
+</div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="groupName">Group Name:</label>
+    <div class="col-sm-4">
+      <input type="text" id="groupName" name="groupName" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="repoDesc">Repo Description:</label>
+    <div class="col-sm-4">
+      <input type="text" id="repoDesc" name="repoDesc" class="form-control">
+    </div>
+  </div>
+</form>
+<p>
+<button class="btn btn-primary" style="margin-left:550px;" id="repostart" type="button">Start Process</button>
+</p>
+
+<script>
+$('#repostart').click(function () {
+	$('#repoform').submit(function( event ) {
+		  alert( "Handler for .submit() called." );
+		  event.preventDefault();
+	});
+});
+
+	/* var a=$('#repoform').serialize();
+	$.ajax({
+	    type:'POST',
+	    url:'../process',
+	    data:a,
+	    beforeSend:function(){
+	        
+	    },
+	    complete:function(){
+	        
+	    },
+	    success:function(result){
+	         
+	    }
+	}); */
+});
+</script>
+</body>
+</html>

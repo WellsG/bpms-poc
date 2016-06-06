@@ -1,0 +1,74 @@
+{
+  "name": "patternfly",
+  "version": "3.4.0",
+  "author": {
+    "name": "Red Hat"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.3.0",
+    "jquery": "~2.1.4",
+    "bootstrap-datepicker": "~1.4.0",
+    "bootstrap-select": "1.7.3",
+    "bootstrap-switch": "~3.3.2",
+    "bootstrap-touchspin": "~3.1.1",
+    "bootstrap-treeview": "~1.2.0",
+    "c3": "~0.4.10",
+    "datatables": "~1.10.9",
+    "datatables.net-colreorder": "~1.3.1",
+    "drmonty-datatables-colvis": "~1.1.2",
+    "google-code-prettify": "~1.0.1",
+    "jquery-match-height": "~0.7.0",
+    "patternfly-bootstrap-combobox": "~1.0.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.15.35",
+    "moment": "~2.11.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "~0.3.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-copy": "^0.8.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-css-count": "^0.3.0",
+    "grunt-jekyll": "^0.4.2",
+    "grunt-jslint": "^1.1.14",
+    "matchdep": "~0.3.0"
+  },
+  "optionalDependencies": {
+    "bootstrap-datepicker": "~1.4.0",
+    "bootstrap-select": "1.7.3",
+    "bootstrap-switch": "~3.3.2",
+    "bootstrap-touchspin": "~3.1.1",
+    "bootstrap-treeview": "~1.2.0",
+    "c3": "~0.4.10",
+    "datatables": "~1.10.9",
+    "datatables.net-colreorder": "~1.3.1",
+    "drmonty-datatables-colvis": "~1.1.2",
+    "google-code-prettify": "~1.0.1",
+    "jquery-match-height": "~0.7.0",
+    "patternfly-bootstrap-combobox": "~1.0.0",
+    "eonasdan-bootstrap-datetimepicker": "~4.15.35",
+    "moment": "~2.11.0"
+  },
+  "description": "This reference implementation of PatternFly is based on [Bootstrap v3](http://getbootstrap.com/).  Think of PatternFly as a \"skinned\" version of Bootstrap with additional components and customizations.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patternfly/patternfly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly/issues"
+  },
+  "homepage": "https://github.com/patternfly/patternfly",
+  "readme": "# [PatternFly](https://www.patternfly.org) reference implementation\n\nThis reference implementation of PatternFly is based on [Bootstrap v3](http://getbootstrap.com/).  Think of PatternFly as a \"skinned\" version of Bootstrap with additional components and customizations. For information on how to quickly get started using PatternFly, see the [Quick Start Guide](QUICKSTART.md).\n\n\n# Installation\n\n### Install with Bower\n\nPatternFly can be installed and managed through [Bower](http://bower.io/). To do so, either add `patternfly` as a dependency in your `bower.json` or run the following:\n\n```\nbower install patternfly\n```\n\n#### Using Wiredep?\n\nAre you using [Wiredep](https://github.com/taptapship/wiredep)?  PatternFly's CSS includes the CSS of its dependencies.  As a result, you'll want to add the following to your [Wiredep configuration](https://github.com/taptapship/wiredep#configuration) so you don't end up with duplicate CSS.\n\n```\nexclude: [\n  \"bower_components/bootstrap-combobox/css/bootstrap-combobox.css\",\n  \"bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css\",\n  \"bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css\",\n  \"bower_components/bootstrap-select/dist/css/bootstrap-select.css\",\n  \"bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css\",\n  \"bower_components/bootstrap-treeview/dist/bootstrap-treeview.min.css\",\n  \"bower_components/c3/c3.css\",\n  \"bower_components/datatables/media/css/jquery.dataTables.css\",\n  \"bower_components/datatables-colreorder/css/dataTables.colReorder.css\",\n  \"bower_components/datatables-colvis/css/dataTables.colVis.css\",\n  \"bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css\",\n  \"bower_components/font-awesome/css/font-awesome.css\",\n  \"bower_components/google-code-prettify/bin/prettify.min.css\"\n],\n```\n\n### Install with npm\n\nPatternFly can be installed and managed through [npm](https://www.npmjs.com/).  To do so, run the following:\n\n```\nnpm install patternfly\n```\n\n### Sass and/or Rails\n\nA [Sass port of PatternFly](https://github.com/patternfly/patternfly-sass) is available, as is a [Sass-based Rails Gem](https://rubygems.org/gems/patternfly-sass).\n\n### AngularJS\n\nA set of [common AngularJS directives](https://github.com/patternfly/angular-patternfly) for use with PatternFly is available.\n\n## Dependencies\n\nPatternFly includes a number of dependencies that are not committed to this repository.  To add them, see \"Install Bower Components\".  And make sure you keep them updated (see \"Keeping Bower Components Updated\").\n\n## Development\n\nDevelopment setup requires nodejs and Ruby. If you do not already have nodejs, npm, and Ruby installed on your system, see https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager and https://www.ruby-lang.org/en/downloads.\n\n### Install Bower Components\n\nAfter ensuring nodejs and npm are available, install [Bower](http://bower.io/) globally:\n\n    npm install -g bower\n\nNow that Bower is available, we can install the required development components:\n\n    bower install\n\nAt this point, you should now have a top level components/ folder with all dependencies listed in the bower.json file installed.  Unless you plan to contribute to PatternFly itself, you're done.  Celebrate by working on integrating PatternFly and its dependencies in your app!\n\n#### Keeping Bower Components Updated\n\nAnytime you pull a new version of PatternFly, make sure you also run\n\n    bower update\n\nso you get the latest version of the components specified in bower.json.\n\n### Install Development Dependencies\n\nThe development includes the use of a number of helpful tasks. In order to setup your development environment to allow running of these tasks, you need to install the local nodejs packages declared in `package.json`. To do this run:\n\n    npm install\n\nThis will install all necessary development packages into `node_modules/`. At this point, the gruntjs tasks are available for use such as starting a local development server or building the master CSS file.\n\nAdditionally you may need to install the grunt command line utility.  To do this run:\n\n    npm install -g grunt-cli\n\nTest pages are generated using [Jekyll](http://jekyllrb.com/).  After ensuring Ruby is installed and available, run:\n\n    gem install jekyll -v 2.5.3\n\nNote: You can use any version prior to 3.1.x, due to [#4433](https://github.com/jekyll/jekyll/issues/4433) and [#4442](https://github.com/jekyll/jekyll/issues/4442)\n\n### Live Reload Server\n\nA local development server can be quickly fired up by using the Gruntjs server task:\n\n    grunt server\n\nThis local static asset server (i.e., [http://localhost:9000](http://localhost:9000)) has the advantage of having livereload integration. Thus, if you start the Gruntjs server, any changes you make to `.html` or `.less` files will be automatically reloaded into your browser and the changes reflected almost immediately. This has the obvious benefit of not having to refresh your browser and still be able to see the changes as you add or remove them from your development files.  Additionally, any changes made to Jekyll source files (`tests-src/`) will trigger a Jekyll build.\n\n### Coding Style\n\nSee [http://codeguide.patternfly.org/](http://codeguide.patternfly.org/).\n\n## Build\n\n### CSS\n\nIn development, styling is written and managed through multiple lesscss files. In order to generate a CSS file of all styling, run the build Gruntjs task:\n\n    grunt build\n\nThis task will compile and minify the lesscss files into CSS files located at `dist/css/patternfly.min.css` and `dist/css/patternfly-additional.min.css`.\n\n### PatternFlyIcons Font\n\nPatternFlyIcons font is generated using [IcoMoon](http://icomoon.io/app). Go to [manage projects](https://icomoon.io/app/#/projects) and import the project `PatternFlyIcons-webfont.json`. Load it and update as necessary. When finished, return to manage projects, and download the updated `PatternFlyIcons-webfont.json` file. Also generate the fonts. Please commit the updated `PatternFlyIcons-webfont.json` file, the updated font files and supporting LESS/CSS changes.\nFor detailed instructions, please see our [PatternFly Icon Guide](PFICONS.md)\n\n## Tests\n\nThe `tests/` directory contains HTML pages with component and pattern examples in order to facilitate development.  Please consult the official documentation (see below) for full details on how to use PatternFly.\n\nThe HTML pages in `tests/` are generated using Jekyll.  Do *not* edit these files directly.  See `tests-src/` to change these files.\n\n## Release\n\nPatternFly is released through the Bower and npm.\n\nTo release a new version version of PatternFly, edit `bower.json` and `package.json` accordingly.\n\nUpdate the version listed in `bower.json` by editing the file and changing the line:\n\n```\n\"version\": \"<new_version>\"\n```\n\nUpdate the version listed in `package.json` by editing the file and changing the line:\n\n```\n\"version\": \"<new_version>\"\n```\n\nCommit the version bump:\n\n```\ngit commit -a -m \"Version bump to <new_version>\"\n```\n\nTag and push upstream (assuming you have commit access):\n\n```\ngit tag <new_version>\ngit push && git push --tags\n```\n\nThe Bower package manager determines available versions and installs based upon git tags, so the new version will now be automatically available via Bower.\n\nTo publish a new version to npm, run:\n\n```\nnpm publish\n```\n\n## Documentation\n\nSee [https://www.patternfly.org](https://www.patternfly.org) and [http://getbootstrap.com/](http://getbootstrap.com/).\n\n### Browser and Device Support\n\nSince PatternFly is based on Bootstrap, PatternFly supports [the same browsers as Bootstrap](http://getbootstrap.com/getting-started/#support) **excluding Internet Explorer 8**, plus the latest version of [Firefox for Linux](https://support.mozilla.org/en-US/kb/install-firefox-linux).\n\n*Important:*  starting with the v2.0.0 release, **PatternFly no longer supports Internet Explorer 8**.\n\n### Product Backlog\n\nSee [https://patternfly.atlassian.net/secure/RapidBoard.jspa?projectKey=PTNFLY&rapidView=4&view=planning](https://patternfly.atlassian.net/secure/RapidBoard.jspa?projectKey=PTNFLY&rapidView=4&view=planning).\n\n### Bug List\n\nOfficial tracking of bugs occurs in Jira.  See https://patternfly.atlassian.net/issues/?filter=10300\n\n## License\n\nModifications to Bootstrap are copyright 2013 Red Hat, Inc. and licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).\n",
+  "readmeFilename": "README.md",
+  "_id": "patternfly@3.4.0",
+  "dist": {
+    "shasum": "0f4f90f4f90dba739582f8e438250403fa9ba427"
+  },
+  "_from": "patternfly@",
+  "_resolved": "https://registry.npmjs.org/patternfly/-/patternfly-3.4.0.tgz"
+}
