@@ -37,7 +37,7 @@
 
 <h2>My Tasks</h2>
 <ul id="tasks" class="list-group">
-
+	<li class='list-group-item'><h4>ID   Task Name</h4></li>
 </ul>
 
 <script>
@@ -47,19 +47,14 @@
 	   dataType: 'json',
 	   success: function(data) {
 		  $.each( data, function( i, item ) {
-		          $("#tasks").append("<li class='list-group-item'>" + item.id + item.taskName + " </li>");
+		      $("#tasks").append("<li class='list-group-item'>" + item.id + " " + item.taskName + " </li>");
 		  });
 	   },
 	   error : function (data) {
-	      $.each( data, function( i, item ) {
-	          $("#tasks").append("<li class='list-group-item'>" + item.id + item.taskName + " </li>");
-	      }); 
+	      alert("error");
 	   },
 	   type: 'GET'
 	});
-/* for(var i=0 ; i<5; i++) {
-	$("#tasks").append("<li class='list-group-item'>task " + i + " </li>");
-} */
 </script>
 </body>
 </html>

@@ -38,10 +38,27 @@
 <h2>Process Definition</h2>
 <ul class="list-group">
   <li class="list-group-item"><a href="process-form/RepoRequest.html">Repo Request Process</a></li>
-  <li class="list-group-item">Bugzilla Account Configuration</li>
-  <li class="list-group-item">Errata User Settings</li>
 </ul>
 
-<h2><a href="tasks-form/ListTasks.html">My Tasks</a></h2>
+<h2>My Tasks</h2>
+<ul id="tasks" class="list-group">
+	<li class='list-group-item'><h4>ID   Task Name</h4></li>
+</ul>
+<script>
+	$.ajax({
+	   url: 'tasks',
+	   data: {},
+	   dataType: 'json',
+	   success: function(data) {
+		  $.each( data, function( i, item ) {
+		      $("#tasks").append("<li class='list-group-item'><a href='#'>" + item.id + " " + item.taskName + " </a></li>");
+		  });
+	   },
+	   error : function (data) {
+	      alert("error");
+	   },
+	   type: 'GET'
+	});
+</script>
 </body>
 </html>
