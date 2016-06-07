@@ -1,0 +1,56 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="patternfly/dist/css/patternfly.min.css">
+<!-- jQuery -->
+<script src="3rdlib/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="3rdlib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- PatternFly Custom Componets -  Sidebar, Popovers and Datatables Customizations -->
+<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+<script src="patternfly/dist/js/patternfly.min.js"></script>
+
+<!-- Bootstrap Select -->
+<script src="3rdlib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+</head>
+<body>
+
+<ul class="nav nav-tabs">
+  <li class="active" id="pd"><a href="#">Process Definition</a></li>
+  <li id="mt"><a href="#">My Tasks</a></li>
+  <li id="ins"><a href="#">Process Instances</a></li>
+</ul>
+<iframe id='subpage' src="" width="100%" height="100%" style="border: none;">
+   
+</iframe>
+<script>
+$(document).ready(function() {
+	$('#subpage').attr('src',"processDefinition.html");
+	$('#pd').addClass('active');
+	$('#mt').removeClass('active');
+	$('#ins').removeClass('active');
+});
+$("#pd").click(function(){
+	$('#subpage').attr('src',"processDefinition.html");
+	$('#pd').addClass('active');
+	$('#mt').removeClass('active');
+	$('#ins').removeClass('active');
+});
+$("#mt").click(function(){
+	$('#subpage').attr('src',"myTasks.html");
+	$('#mt').addClass('active');
+	$('#pd').removeClass('active');
+	$('#ins').removeClass('active');
+});
+$("#ins").click(function(){
+	$('#subpage').attr('src',"instances.html");
+	$('#ins').addClass('active');
+	$('#pd').removeClass('active');
+	$('#mt').removeClass('active');
+});
+</script>
+</body>
+</html>

@@ -34,10 +34,6 @@
 </head>
 <body>
 
-<h2>Process Definition</h2>
-<ul class="list-group">
-  <li class="list-group-item"><a href="process-form/RepoRequest.html">Repo Request Process</a></li>
-</ul>
 <h2>My Tasks</h2>
 <table id="taskTable" style="font-size:12px;" class="table table-striped table-bordered">
   <thead>
@@ -53,20 +49,6 @@
   </tbody>
 </table>
 
-<h2>Process Instances</h2>
-<table id="instanceTable" style="font-size:12px;" class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>InstanceId</th>
-      <th>Process Name</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
 <script>
 	$.ajax({
 	   url: 'tasks',
@@ -75,7 +57,7 @@
 	   success: function(data) {
 		  $.each( data, function( i, item ) {
 		      //$("#tasks").append("<li class='list-group-item'><a href='#'>" + item.id + " " + item.taskName + " </a></li>");
-		      $('#taskTable tbody').append("<tr><td>" + item.id + "</td><td><a href='tasks-form/task.html?id=" + item.id + "'>" + item.taskName + "</a></td><td>" + item.createdOn + "</td><td>" + item.processName + "</td><td>" + item.status + "</td></tr>");
+		      $('#taskTable tbody').append("<tr><td>" + item.id + "</td><td><a target='_parent' href='tasks-form/task.html?id=" + item.id + "'>" + item.taskName + "</a></td><td>" + item.createdOn + "</td><td>" + item.processName + "</td><td>" + item.status + "</td></tr>");
 		  });
 	   },
 	   error : function (data) {
@@ -83,22 +65,6 @@
 	   },
 	   type: 'GET'
 	});
-	
-	$.ajax({
-		   url: 'instances',
-		   data: {},
-		   dataType: 'json',
-		   success: function(data) {
-			  $.each( data, function( i, item ) {
-			      //$("#instances").append("<li class='list-group-item'><a href='#'>" + item.processInstanceId + " " + item.processName + " </a></li>");
-			      $('#instanceTable tbody').append("<tr><td>" + item.processInstanceId + "</td><td>" + item.processName + "</td><td>" + item.start + "</td><td>" + item.end + "</td><td><a href='#'>status</a></td></tr>");
-			  });
-		   },
-		   error : function (data) {
-		      alert("error");
-		   },
-		   type: 'GET'
-		});
 </script>
 </body>
 </html>

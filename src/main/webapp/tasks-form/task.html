@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Maitai Task</title>
+<!-- jQuery -->
+<script src="../3rdlib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<iframe id='taskIframe' src="" width="100%" height="100%" style="border: none;">
+   
+</iframe>
+<script>
+var a = window.location.toString();
+var taskId = a.substring(a.indexOf("=")+1);
+$("#taskId").val(taskId);
+$.ajax({
+	   url: '../task',
+	   data: {"taskId":taskId},
+	   dataType: 'json',
+	   success: function(data) {
+		   $('#taskIframe').attr('src', data.TaskName + ".html?id=" + taskId);
+	   },
+	   error : function (data) {
+	      alert("error");
+	   },
+	   type: 'GET'
+	});
+</script>
+</body>
+</html>

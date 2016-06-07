@@ -1,7 +1,9 @@
 package com.example.poc.web;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,12 @@ public class ListTasksServlet extends HttpServlet {
                 Task t1 = new Task();
                 t1.setId(jaxbTask.getId());
                 t1.setTaskName(jaxbTask.getName());
+                t1.setProcessName(jaxbTask.getDeploymentId());
+                t1.setStatus(jaxbTask.getStatus());
+                Date UTCDate = new Date(jaxbTask.getCreatedOn());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                String result = simpleDateFormat.format(UTCDate);
+                t1.setCreatedOn(result);
                 tasks.add(t1);
             }
         } catch (Exception e) {
