@@ -5,7 +5,14 @@ public class ProcessInstance {
     private long processInstanceId;
     private String processName;
     private String start;
+    private String end;
 
+    public String getEnd() {
+        return end;
+    }
+    public void setEnd(String end) {
+        this.end = end;
+    }
     public String getStart() {
         return start;
     }
