@@ -64,7 +64,7 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="wontFix">won't fix:</label>
     <div class="col-sm-1">
-      <input type="checkbox" value="false" id="wontFix" name="wontFix" class="form-control">
+      <input type="checkbox" value="false" id="wontFix" class="form-control">
     </div>
   </div>
     <div class="form-group">
@@ -73,6 +73,7 @@
       <input type="text" id="comment" name="comment" class="form-control">
     </div>
   </div>
+  <input type="hidden" id="wontFixInput" name="wontFix" value="false">
 </form>
 <p>
 <button class="btn btn-primary" style="margin-left:550px;" id="taskComplete" type="button">Complete</button>
@@ -98,6 +99,10 @@ $.ajax({
 	});
 $('#taskComplete').click(function () {
 	$('#taskForm').submit();
+});
+$("#wontFix").change(function(){ 
+    var v = $(this).is(':checked')?"true":"false";
+    $("#wontFixInput").val(v);
 });
 </script>
 </body>
