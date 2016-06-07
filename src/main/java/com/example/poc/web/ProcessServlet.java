@@ -1,6 +1,7 @@
 package com.example.poc.web;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,24 +32,19 @@ public class ProcessServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        String repoName = request.getParameter("repoName");
-        String ldapGroup = request.getParameter("ldapGroup");
-        String groupName = request.getParameter("groupName");
-        String repoDesc = request.getParameter("repoDesc");
 
-        LOGGER.info("repoName: {}", repoName);
-        LOGGER.info("ldapGroup: {}", ldapGroup);
-        LOGGER.info("groupName: {}", groupName);
-        LOGGER.info("repoDesc: {}", repoDesc);
+        Map<String, String> params = new HashMap<String, String>();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String paramKey = parameterNames.nextElement();
+            String paramValue = request.getParameter(paramKey);
+            LOGGER.info("Param-{}:{}", paramKey, paramValue);
+            params.put(paramKey, paramValue);
+        }
         
         String deploymentId = "com.redhat.fls.repo:RepoRequest:1.1.8";
         String processDefId = "RepoRequest.RepoRequestProcess";
         
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("repoName", repoName);
-        params.put("ldapGroup", ldapGroup);
-        params.put("groupName", groupName);
-        params.put("repoDesc", repoDesc);
         BpmsClient bpmsClient = BpmsClientUtil.setUp();
         try {
             StartProcessResponse resp = bpmsClient.startProcess(deploymentId, processDefId, params);

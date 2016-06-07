@@ -1,6 +1,7 @@
 package com.example.poc.web;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +33,9 @@ public class TaskServlet extends HttpServlet {
             throws IOException {
         String taskId = request.getParameter("taskId");
         Map<String, String> params = new HashMap<String, String>();
-        if (request.getParameterNames().hasMoreElements()) {
-            String paramKey = request.getParameterNames().nextElement();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String paramKey = parameterNames.nextElement();
             String paramValue = request.getParameter(paramKey);
             params.put(paramKey, paramValue);
         }
