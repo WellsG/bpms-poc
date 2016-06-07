@@ -6,6 +6,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<build>
+		<finalName>bpms-poc</finalName>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -21,6 +24,16 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>bpmsremote-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,9 +1,7 @@
 package com.example.poc.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
@@ -16,17 +14,14 @@ import org.slf4j.LoggerFactory;
 
 import com.example.bpmsremote.client2.BpmsClient;
 import com.example.bpmsremote.client2.BpmsClientUtil;
-import com.example.bpmsremote.model.JaxbTaskSummary;
-import com.example.bpmsremote.model.TaskSummary;
-import com.example.poc.model.Task;
 import com.google.gson.Gson;
 
 
-@WebServlet("/tasks")
-public class ListTasksServlet extends HttpServlet {
+@WebServlet("/complete")
+public class TaskServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ListTasksServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TaskServlet.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -35,23 +30,21 @@ public class ListTasksServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        String taskId = request.getParameter("taskId");
+        Map<String, String> params = new HashMap<String, String>();
+        if (request.getParameterNames().hasMoreElements()) {
+            String paramKey = request.getParameterNames().nextElement();
+            String paramValue = request.getParameter(paramKey);
+            params.put(paramKey, paramValue);
+        }
         BpmsClient bpmsClient = BpmsClientUtil.setUp();
-        List<Task> tasks = new ArrayList<Task>();
         try {
-            Map<String, String> params = new HashMap<String, String>();
-            params.put("potentialOwner", "vpotesil");
-            TaskSummary task = bpmsClient.listAssignTask(params);
-            for (JaxbTaskSummary jaxbTask : task.getTaskSummaryList()) {
-                Task t1 = new Task();
-                t1.setId(jaxbTask.getId());
-                t1.setTaskName(jaxbTask.getName());
-                tasks.add(t1);
-            }
+            bpmsClient.startHumantask(Long.parseLong(taskId), params);
+            bpmsClient.completeHumantask(Long.parseLong(taskId), params);
+            response.getWriter().write("SUCCESS");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        response.getWriter().write(new Gson().toJson(tasks));
 
     }
 }

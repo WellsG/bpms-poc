@@ -18,6 +18,8 @@
 
 <!-- Bootstrap Combobox -->
 <script src="3rdlib/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<!-- Moment - required by Bootstrap Date Time Picker -->
+<script src="3rdlib/moment/min/moment.min.js"></script>
 <!-- Bootstrap Date Picker -->
 <script src="3rdlib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap Date Time Picker - requires Moment -->
@@ -28,10 +30,7 @@
 <script src="3rdlib/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
 <!-- Google Code Prettify - Syntax highlighting of code snippets -->
 <script src="3rdlib/google-code-prettify/bin/prettify.min.js"></script>
-<!-- MatchHeight - Used to make sure dashboard cards are the same height -->
-<script src="3rdlib/matchHeight/jquery.matchHeight-min.js"></script>
-<!-- Moment - required by Bootstrap Date Time Picker -->
-<script src="3rdlib/moment/min/moment.min.js"></script>
+
 </head>
 <body>
 
@@ -39,11 +38,31 @@
 <ul class="list-group">
   <li class="list-group-item"><a href="process-form/RepoRequest.html">Repo Request Process</a></li>
 </ul>
-
 <h2>My Tasks</h2>
-<ul id="tasks" class="list-group">
-	<li class='list-group-item'><h4>ID   Task Name</h4></li>
-</ul>
+<table id="taskTable" style="font-size:12px;" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Task Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h2>Process Instances</h2>
+<table id="instanceTable" style="font-size:12px;" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>InstanceId</th>
+      <th>Process Name</th>
+      <th>Start</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 <script>
 	$.ajax({
 	   url: 'tasks',
@@ -51,7 +70,8 @@
 	   dataType: 'json',
 	   success: function(data) {
 		  $.each( data, function( i, item ) {
-		      $("#tasks").append("<li class='list-group-item'><a href='#'>" + item.id + " " + item.taskName + " </a></li>");
+		      //$("#tasks").append("<li class='list-group-item'><a href='#'>" + item.id + " " + item.taskName + " </a></li>");
+		      $('#taskTable tbody').append("<tr><td>" + item.id + "</td><td><a href='tasks-form/" + item.taskName + ".html?id=" + item.id + "'>" + item.taskName + "</a></td></tr>");
 		  });
 	   },
 	   error : function (data) {
@@ -59,6 +79,22 @@
 	   },
 	   type: 'GET'
 	});
+	
+	$.ajax({
+		   url: 'instances',
+		   data: {},
+		   dataType: 'json',
+		   success: function(data) {
+			  $.each( data, function( i, item ) {
+			      //$("#instances").append("<li class='list-group-item'><a href='#'>" + item.processInstanceId + " " + item.processName + " </a></li>");
+			      $('#instanceTable tbody').append("<tr><td>" + item.processInstanceId + "</td><td>" + item.processName + "</td><td>" + item.start + "</td><td><a href='#'>status</a></td></tr>");
+			  });
+		   },
+		   error : function (data) {
+		      alert("error");
+		   },
+		   type: 'GET'
+		});
 </script>
 </body>
 </html>
