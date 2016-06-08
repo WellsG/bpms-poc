@@ -45,7 +45,7 @@ public class TaskServlet extends HttpServlet {
         try {
             bpmsClient.startHumantask(Long.parseLong(taskId), params);
             bpmsClient.completeHumantask(Long.parseLong(taskId), params);
-            response.getWriter().write("SUCCESS");
+            response.getWriter().write("{\"status\":\"SUCCESS\"}");
         } catch (Exception e) {
             e.printStackTrace();
         }

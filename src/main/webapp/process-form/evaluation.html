@@ -68,6 +68,7 @@ $('#evastart').click(function () {
 	    data : $('#evaform').serialize(),
 	    success : function (data) {
 	        alert("Start successfully, process id:" + data.id);
+	        window.location.href = '../index2.html';
 	    }
 	});
 });

@@ -77,7 +77,17 @@ $.ajax({
 	   type: 'GET'
 	});
 $('#taskComplete').click(function () {
-	$('#taskForm').submit();
+	//$('#taskForm').submit();
+	$.ajax({
+	    url : '../complete',
+	    dataType : 'json',
+	    type: 'POST',
+	    data : $('#taskForm').serialize(),
+	    success : function (data) {
+	        alert("Complete successfully");
+	        window.location.href = '../index2.html';
+	    }
+	});
 });
 </script>
 </body>
