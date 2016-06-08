@@ -60,8 +60,18 @@
 
 <script>
 $('#evastart').click(function () {
-	$('#evaform').submit();
+	//$('#evaform').submit();
+	$.ajax({
+	    url : '../process',
+	    dataType : 'json',
+	    type: 'POST',
+	    data : $('#evaform').serialize(),
+	    success : function (data) {
+	        alert("Start successfully, process id:" + data.id);
+	    }
+	});
 });
+
 </script>
 </body>
 </html>
