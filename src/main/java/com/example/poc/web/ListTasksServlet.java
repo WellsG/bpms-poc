@@ -37,11 +37,11 @@ public class ListTasksServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        BpmsClient bpmsClient = BpmsClientUtil.setUp();
+        BpmsClient bpmsClient = BpmsClientUtil.getBpmsClient();
         List<Task> tasks = new ArrayList<Task>();
         try {
             Map<String, String> params = new HashMap<String, String>();
-            params.put("potentialOwner", "vpotesil");
+            params.put("potentialOwner", "wguo");
             TaskSummary task = bpmsClient.listAssignTask(params);
             for (JaxbTaskSummary jaxbTask : task.getTaskSummaryList()) {
                 Task t1 = new Task();

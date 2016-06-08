@@ -23,6 +23,7 @@ public class TaskServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskServlet.class);
+    private static final String USERID = "wguo";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -39,7 +40,8 @@ public class TaskServlet extends HttpServlet {
             String paramValue = request.getParameter(paramKey);
             params.put(paramKey, paramValue);
         }
-        BpmsClient bpmsClient = BpmsClientUtil.setUp();
+        params.put("userId", USERID);
+        BpmsClient bpmsClient = BpmsClientUtil.getBpmsClient();
         try {
             bpmsClient.startHumantask(Long.parseLong(taskId), params);
             bpmsClient.completeHumantask(Long.parseLong(taskId), params);

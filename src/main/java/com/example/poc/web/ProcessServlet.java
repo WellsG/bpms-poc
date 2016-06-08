@@ -32,20 +32,23 @@ public class ProcessServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-
+        String deploymentId = request.getParameter("deploymentId");
+        String processDefId = request.getParameter("processDefId");
+        
+        LOGGER.info("Process Starting {} - {}", deploymentId, processDefId);
+        
         Map<String, String> params = new HashMap<String, String>();
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String paramKey = parameterNames.nextElement();
-            String paramValue = request.getParameter(paramKey);
-            LOGGER.info("Param-{}:{}", paramKey, paramValue);
-            params.put(paramKey, paramValue);
+            if (!paramKey.equals("deploymentId") && !paramKey.equals("processDefId")) {
+                String paramValue = request.getParameter(paramKey);
+                LOGGER.info("Param-{}:{}", paramKey, paramValue);
+                params.put(paramKey, paramValue);
+            }
         }
         
-        String deploymentId = "com.redhat.fls.repo:RepoRequest:1.1.8";
-        String processDefId = "RepoRequest.RepoRequestProcess";
-        
-        BpmsClient bpmsClient = BpmsClientUtil.setUp();
+        BpmsClient bpmsClient = BpmsClientUtil.getBpmsClient();
         try {
             StartProcessResponse resp = bpmsClient.startProcess(deploymentId, processDefId, params);
             response.getWriter().write(new Gson().toJson(resp));

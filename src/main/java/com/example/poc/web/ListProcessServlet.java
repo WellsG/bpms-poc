@@ -34,12 +34,12 @@ public class ListProcessServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        BpmsClient bpmsClient = BpmsClientUtil.setUp();
+        BpmsClient bpmsClient = BpmsClientUtil.getBpmsClient();
         List<ProcessInstance> instances = new ArrayList<ProcessInstance>();
         try {
             List<ProcessInstanceLog> logs = bpmsClient.listInstances();
             for (ProcessInstanceLog log : logs){
-                if (log.getLog() != null && log.getLog().getStatus() != 3){
+                if (log.getLog() != null && log.getLog().getStatus() != 3 && log.getLog().getStatus() != 2){
                     ProcessInstance p1 = new ProcessInstance();
                     p1.setProcessInstanceId(log.getLog().getProcessInstanceId());
                     p1.setProcessName(log.getLog().getExternalId());

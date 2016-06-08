@@ -56,7 +56,7 @@
 		   success: function(data) {
 			  $.each( data, function( i, item ) {
 			      //$("#instances").append("<li class='list-group-item'><a href='#'>" + item.processInstanceId + " " + item.processName + " </a></li>");
-			      $('#instanceTable tbody').append("<tr><td>" + item.processInstanceId + "</td><td>" + item.processName + "</td><td>" + item.start + "</td><td>" + item.end + "</td><td><a href='#'>status</a></td></tr>");
+			      $('#instanceTable tbody').append("<tr><td>" + item.processInstanceId + "</td><td>" + item.processName + "</td><td>" + item.start + "</td><td>" + item.end + "</td><td><a target='_blank' href='process-form/processImage.html?id="+ item.processInstanceId +"'>status</a></td></tr>");
 			  });
 		   },
 		   error : function (data) {

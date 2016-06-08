@@ -1,7 +1,9 @@
 package com.example.poc.web;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +16,16 @@ import org.slf4j.LoggerFactory;
 
 import com.example.bpmsremote.client2.BpmsClient;
 import com.example.bpmsremote.client2.BpmsClientUtil;
-import com.example.bpmsremote.model.TaskContent;
-import com.example.poc.model.Task;
+import com.example.bpmsremote.model.ProcessInstanceLog;
+import com.example.poc.model.ProcessInstance;
 import com.google.gson.Gson;
 
 
-@WebServlet("/task")
-public class TaskContentServlet extends HttpServlet {
+@WebServlet("/instanceimage")
+public class ProcessImageServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOGGER = LoggerFactory.getLogger(TaskContentServlet.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProcessImageServlet.class);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -32,14 +34,12 @@ public class TaskContentServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        String instanceId = request.getParameter("processInstanceId");
         BpmsClient bpmsClient = BpmsClientUtil.getBpmsClient();
-        String taskId = request.getParameter("taskId");
         try {
-            TaskContent content = bpmsClient.getTaskContent(Long.parseLong(taskId));
-            response.getWriter().write(new Gson().toJson(content.getContentMap()));
+            response.getWriter().write(bpmsClient.getProcessImage(Long.parseLong(instanceId)));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

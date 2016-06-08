@@ -35,47 +35,32 @@
 </head>
 <body>
 
-<h4>Repo Request Process</h4>
-<form id="repoform" class="form-horizontal" method="POST" action="../process">
+<h4>Evaluation Process</h4>
+<form id="evaform" class="form-horizontal" method="POST" action="../process">
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="repoName">Repo Name:</label>
+    <label class="col-sm-1 control-label" for="employee">Employee:</label>
     <div class="col-sm-4">
-      <input type="text" id="repoName" name="repoName" class="form-control">
-    </div>
-  </div>
-   <div class="form-group">
-  <label class="col-sm-1 control-label" for="ldapGroup">Group:</label>
-  <div class="col-sm-4">
-  <select id="ldapGroup" name="ldapGroup" class="combobox form-control">
-    <option value="true" selected="selected">LDAP Group</option>
-    <option value="false">Gerrit Group</option>
-  </select>
-</div>
-</div>
-  <div class="form-group">
-    <label class="col-sm-1 control-label" for="groupName">Group Name:</label>
-    <div class="col-sm-4">
-      <input type="text" id="groupName" name="groupName" class="form-control">
+      <input type="text" id="employee" name="employee" class="form-control">
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="repoDesc">Repo Description:</label>
+    <label class="col-sm-1 control-label" for="reason">Reason:</label>
     <div class="col-sm-4">
-      <input type="text" id="repoDesc" name="repoDesc" class="form-control">
+      <input type="text" id="reason" name="reason" class="form-control">
     </div>
   </div>
   
   <!-- hidden process info -->
-  <input type="hidden" name="deploymentId" value="com.redhat.fls.repo:RepoRequest:1.1.8"/>
-  <input type="hidden" name="processDefId" value="RepoRequest.RepoRequestProcess"/>
+  <input type="hidden" name="deploymentId" value="org.jbpm:evaluation:2.1"/>
+  <input type="hidden" name="processDefId" value="evaluation"/>
 </form>
 <p>
-<button class="btn btn-primary" style="margin-left:550px;" id="repostart" type="button">Start Process</button>
+<button class="btn btn-primary" style="margin-left:550px;" id="evastart" type="button">Start Process</button>
 </p>
 
 <script>
-$('#repostart').click(function () {
-	$('#repoform').submit();
+$('#evastart').click(function () {
+	$('#evaform').submit();
 });
 </script>
 </body>

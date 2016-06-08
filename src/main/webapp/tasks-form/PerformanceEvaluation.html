@@ -36,46 +36,48 @@
 <body>
 
 <h4>Repo Request Process</h4>
-<form id="repoform" class="form-horizontal" method="POST" action="../process">
-  <div class="form-group">
-    <label class="col-sm-1 control-label" for="repoName">Repo Name:</label>
+<form id="taskForm" class="form-horizontal" method="POST" action="../complete">
+<div class="form-group">
+    <label class="col-sm-1 control-label" for="taskId">Task ID:</label>
     <div class="col-sm-4">
-      <input type="text" id="repoName" name="repoName" class="form-control">
-    </div>
-  </div>
-   <div class="form-group">
-  <label class="col-sm-1 control-label" for="ldapGroup">Group:</label>
-  <div class="col-sm-4">
-  <select id="ldapGroup" name="ldapGroup" class="combobox form-control">
-    <option value="true" selected="selected">LDAP Group</option>
-    <option value="false">Gerrit Group</option>
-  </select>
-</div>
-</div>
-  <div class="form-group">
-    <label class="col-sm-1 control-label" for="groupName">Group Name:</label>
-    <div class="col-sm-4">
-      <input type="text" id="groupName" name="groupName" class="form-control">
+      <input type="text" id="taskId" name="taskId" class="form-control">
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="repoDesc">Repo Description:</label>
+    <label class="col-sm-1 control-label" for="reason">Reason:</label>
     <div class="col-sm-4">
-      <input type="text" id="repoDesc" name="repoDesc" class="form-control">
+      <input type="text" id="reason" name="reason" class="form-control" disabled>
     </div>
   </div>
-  
-  <!-- hidden process info -->
-  <input type="hidden" name="deploymentId" value="com.redhat.fls.repo:RepoRequest:1.1.8"/>
-  <input type="hidden" name="processDefId" value="RepoRequest.RepoRequestProcess"/>
+    <div class="form-group">
+    <label class="col-sm-1 control-label" for="performance">Performance:</label>
+    <div class="col-sm-4">
+      <input type="text" id="performance" name="performance" class="form-control">
+    </div>
+  </div>
 </form>
 <p>
-<button class="btn btn-primary" style="margin-left:550px;" id="repostart" type="button">Start Process</button>
+<button class="btn btn-primary" style="margin-left:550px;" id="taskComplete" type="button">Complete</button>
 </p>
 
 <script>
-$('#repostart').click(function () {
-	$('#repoform').submit();
+var a = window.location.toString();
+var taskId = a.substring(a.indexOf("=")+1);
+$("#taskId").val(taskId);
+$.ajax({
+	   url: '../task',
+	   data: {"taskId":taskId},
+	   dataType: 'json',
+	   success: function(data) {
+		   $("#reason").val(data.reason);
+	   },
+	   error : function (data) {
+	      alert("error");
+	   },
+	   type: 'GET'
+	});
+$('#taskComplete').click(function () {
+	$('#taskForm').submit();
 });
 </script>
 </body>
