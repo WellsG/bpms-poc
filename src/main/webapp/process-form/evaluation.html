@@ -34,7 +34,9 @@
 <script src="../3rdlib/moment/min/moment.min.js"></script>
 </head>
 <body>
+<div id="successalert" class="alert alert-success" role="alert" hidden="hidden">
 
+</div>
 <h4>Evaluation Process</h4>
 <form id="evaform" class="form-horizontal" method="POST" action="../process">
   <div class="form-group">
@@ -61,14 +63,16 @@
 <script>
 $('#evastart').click(function () {
 	//$('#evaform').submit();
+	$("#evastart").attr("disabled", "disabled");
 	$.ajax({
 	    url : '../process',
 	    dataType : 'json',
 	    type: 'POST',
 	    data : $('#evaform').serialize(),
 	    success : function (data) {
-	        alert("Start successfully, process id:" + data.id);
-	        window.location.href = '../index2.html';
+	    	$("#successalert").append("Start successfully! Process Id: #" + data.id + ". Go to <a href='../index2.html' class='alert-link'>home page</a>");
+	    	$("#successalert").fadeIn(500);
+	        $("#evastart").removeAttr("disabled");
 	    }
 	});
 });

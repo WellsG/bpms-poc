@@ -34,7 +34,10 @@
 <script src="../3rdlib/moment/min/moment.min.js"></script>
 </head>
 <body>
-
+<div id="successalert" class="alert alert-success" role="alert" hidden="hidden">
+  Complete successfully! Go to 
+  <a href="../index2.html" class="alert-link">home page</a>
+</div>
 <h4>Repo Request Process</h4>
 <form id="taskForm" class="form-horizontal" method="POST" action="../complete">
 <div class="form-group">
@@ -59,7 +62,6 @@
 <p>
 <button class="btn btn-primary" style="margin-left:550px;" id="taskComplete" type="button">Complete</button>
 </p>
-
 <script>
 var a = window.location.toString();
 var taskId = a.substring(a.indexOf("=")+1);
@@ -78,14 +80,16 @@ $.ajax({
 	});
 $('#taskComplete').click(function () {
 	//$('#taskForm').submit();
+	$("#taskComplete").attr("disabled", "disabled");
 	$.ajax({
 	    url : '../complete',
 	    dataType : 'json',
 	    type: 'POST',
 	    data : $('#taskForm').serialize(),
 	    success : function (data) {
-	        alert("Complete successfully");
-	        window.location.href = '../index2.html';
+	        $("#successalert").fadeIn(500);
+	        $("#taskComplete").removeAttr("disabled", "disabled");
+	        //window.location.href = '../index2.html';
 	    }
 	});
 });
