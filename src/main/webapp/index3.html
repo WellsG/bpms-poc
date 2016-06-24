@@ -1,0 +1,28 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/jquery.json-2.3.js"></script>
+<script type="text/javascript" src="js/jquery.base64.js"></script>
+<script>
+
+var url="http://10.66.136.79:8080/business-central/rest/runtime/org.jbpm:evaluation:2.1/process/evaluation/start";
+
+$.ajax(url, {
+    type: "POST",
+    dataType: 'json',
+    crossDomain: true,
+    headers: {
+             'Authorization': "Basic " + btoa("wguo:redhat"),
+             'X-Requested-With' : 'XMLHttpRequest'
+        },	
+    data: {"map_employee":"wguo","map_reason":"test js rest"},
+    success: function (){
+        alert('Start successfully'); 
+    }
+});
+</script>
+</head>
+
+<body>
+</body>
+</html>

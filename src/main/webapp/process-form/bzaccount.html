@@ -1,0 +1,84 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="../patternfly/dist/css/patternfly.min.css">
+<!-- jQuery -->
+<script src="../3rdlib/jquery/dist/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="../3rdlib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- Datatables, jQuery Grid Component -->
+<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+<script src="../3rdlib/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- PatternFly Custom Componets -  Sidebar, Popovers and Datatables Customizations -->
+<!-- Note: jquery.dataTables.js must occur in the html source before patternfly*.js.-->
+<script src="../patternfly/dist/js/patternfly.min.js"></script>
+
+<!-- Bootstrap Combobox -->
+<script src="../3rdlib/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<!-- Bootstrap Date Picker -->
+<script src="../3rdlib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap Date Time Picker - requires Moment -->
+<script src="../3rdlib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- Bootstrap Select -->
+<script src="../3rdlib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../3rdlib/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+<!-- Google Code Prettify - Syntax highlighting of code snippets -->
+<script src="../3rdlib/google-code-prettify/bin/prettify.min.js"></script>
+<!-- MatchHeight - Used to make sure dashboard cards are the same height -->
+<script src="../3rdlib/matchHeight/jquery.matchHeight-min.js"></script>
+<!-- Moment - required by Bootstrap Date Time Picker -->
+<script src="../3rdlib/moment/min/moment.min.js"></script>
+</head>
+<body>
+
+<h4>Evaluation Process</h4>
+<form id="evaform" class="form-horizontal" method="POST" action="../process">
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="BZUser">Bugzilla Account:</label>
+    <div class="col-sm-4">
+      <input type="text" id="BZUser" name="BZUser" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="BZGroups">Bugzilla Groups:</label>
+    <div class="col-sm-4">
+      <input type="text" id="BZGroups" name="BZGroups" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="description">Reason:</label>
+    <div class="col-sm-4">
+      <input type="text" id="description" name="description" class="form-control">
+    </div>
+  </div>
+</form>
+<p>
+<button class="btn btn-primary" style="margin-left:550px;" id="evastart" type="button">Start Process</button>
+</p>
+
+<script>
+$('#evastart').click(function () {
+	//$('#evaform').submit();
+	$.ajax({
+	    url : 'http://10.66.136.79:8080/business-central/rest/runtime/com.redhat.engops.fls:maitai-fls-process:2.2.6/process/com.redhat.engops.fls.newhire-2.1/start',
+	    dataType : 'json',
+	    type: 'POST',
+	    data : $('#evaform').serialize(),
+	    headers: {
+            'Authorization': "Basic " + btoa("wguo:redhat"),
+            'X-Requested-With' : 'XMLHttpRequest'
+        },
+	    success : function (data) {
+	        alert("Start successfully, process id:" + data.id);
+	        window.location.href = '../index2.html';
+	    }
+	});
+});
+
+</script>
+</body>
+</html>
