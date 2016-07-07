@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="../common.js"></script>
+</head>
+<body>
+
+<h4>Evaluation Process</h4>
+<form id="evaform" class="form-horizontal" method="POST" action="../process">
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="BZUser">Bugzilla Account:</label>
+    <div class="col-sm-4">
+      <input type="text" id="BZUser" name="BZUser" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="BZGroups">Bugzilla Groups:</label>
+    <div class="col-sm-4">
+      <input type="text" id="BZGroups" name="BZGroups" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="description">Reason:</label>
+    <div class="col-sm-4">
+      <input type="text" id="description" name="description" class="form-control">
+    </div>
+  </div>
+</form>
+<p>
+<button class="btn btn-primary" style="margin-left:550px;" id="evastart" type="button">Start Process</button>
+</p>
+
+<script>
+$( document ).ready(function() {
+	$('#evastart').click(function () {
+		//$('#evaform').submit();
+		$.ajax({
+		    url : 'http://10.66.136.79:8080/business-central/rest/runtime/com.redhat.engops.fls:maitai-fls-process:2.2.6/process/com.redhat.engops.fls.newhire-2.1/start',
+		    dataType : 'json',
+		    type: 'POST',
+		    data : $('#evaform').serialize(),
+		    headers: {
+	            'Authorization': "Basic " + btoa("wguo:redhat"),
+	            'X-Requested-With' : 'XMLHttpRequest'
+	        },
+		    success : function (data) {
+		        alert("Start successfully, process id:" + data.id);
+		        window.location.href = '../index2.html';
+		    }
+		});
+	});
+});
+</script>
+</body>
+</html>
