@@ -5,7 +5,7 @@ target/
 .externalToolBuilders/
 */target/*
 */.settings/*
-bin/
+
 */.gitignore
 */.classpath
 */.project
