@@ -19,7 +19,5 @@ document.write('<script src="../3rdlib/patternfly-bootstrap-combobox/js/bootstra
 document.write('<script src="../3rdlib/bootstrap-select/dist/js/bootstrap-select.min.js"><\/script>');
 // <!-- Bootstrap Switch -->
 document.write('<script src="../3rdlib/bootstrap-switch/dist/js/bootstrap-switch.min.js"><\/script>');
-// <!-- Google Code Prettify - Syntax highlighting of code snippets -->
-document.write('<script src="../3rdlib/google-code-prettify/bin/prettify.min.js"><\/script>');
 // <!-- Moment - required by Bootstrap Date Time Picker -->
 document.write('<script src="../3rdlib/moment/min/moment.min.js"><\/script>');
